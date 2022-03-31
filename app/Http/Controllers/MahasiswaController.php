@@ -17,9 +17,22 @@ class MahasiswaController extends Controller
     public function index()
     {
         //fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-        $paginate = Mahasiswa::orderBy('id_mahasiswa', 'asc')->paginate(5);
-        return view('mahasiswa.index', ['mahasiswa' => $mahasiswa,'paginate'=>$paginate]);
+        // $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
+        $mahasiswa = Mahasiswa::orderBy('id_mahasiswa', 'asc')->paginate(5);
+        return view('mahasiswa.index', compact('mahasiswa'));
+    }
+
+    public function search(Request $request) 
+    {
+        $keyword = $request->search;
+        $mahasiswa = Mahasiswa::where('nim', 'like', '%' .$keyword. '%')
+            ->orWhere('nama', 'like', '%' .$keyword. '%')
+            ->orWhere('jurusan', 'like', '%' .$keyword. '%')
+            ->orWhere('email', 'like', '%' .$keyword. '%' .$keyword. '%') 
+            ->orWhere('kelas', 'like', '%' .$keyword. '%')
+            ->paginate(3)->withQueryString();
+        
+            return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -66,8 +79,8 @@ class MahasiswaController extends Controller
     public function show($nim)
     {
         //menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
-        $Mahasiswa = Mahasiswa::where('nim', $nim)->first();
-        return view('mahasiswa.detail', compact('Mahasiswa'));
+        $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+        return view('mahasiswa.detail', compact('mahasiswa'));
     }
 
     /**

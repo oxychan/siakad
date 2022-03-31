@@ -5,13 +5,14 @@
         <div class="pull-left mt-2">
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
-        <form action="" class="mt-4">
+        <form action="{{ route('mahasiswa.search') }}" class="mt-4" method="get">
+            @csrf
             <div class="row flex-row">
                 <div class="col-md-4">
                     <div class="input-group">    
-                        <input type="text" class="form-control" placeholder="Nim/Nama/Email/Jurusan/Kelas" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" name="search" class="form-control" placeholder="Nim/Nama/Email/Jurusan/Kelas" aria-label="Username" aria-describedby="basic-addon1">
                         <div class="input-group-append">
-                            <input type="submit" value="Cari" class="btn btn-secondary" id="search"></input>
+                            <input type="submit" value="Cari" class="btn btn-secondary" id="searchnich"></input>
                         </div>
                     </div>
                 </div>
@@ -42,7 +43,7 @@
         <th>Jurusan</th>
         <th width="280px">Action</th>
     </tr>
-@foreach ($paginate as $mhs)
+@foreach ($mahasiswa as $mhs)
     <tr>
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
@@ -61,6 +62,6 @@
 @endforeach
 </table>
 <div class="d-flex justify-content-center">
- {{ $paginate->links() }}
+ {{ $mahasiswa->links() }}
 </div>
 @endsection
