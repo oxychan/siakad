@@ -21,19 +21,38 @@
                     @csrf
                     <div class="form-group">
                         <label for="Nim">Nim</label>
-                        <input type="text" name="nim" class="form-control" id="Nim" aria-describedby="Nim" >
+                        <input type="text" name="nim" class="form-control" id="nim" aria-describedby="Nim" >
                     </div>
                     <div class="form-group">
                         <label for="Nama">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="Nama" aria-describedby="Nama" >
+                        <input type="text" name="nama" class="form-control" id="nama" aria-describedby="Nama" >
+                    </div>
+                    <div class="form-group">
+                        <label for="jenisKelamin">Jenis Kelamin</label>
+                        <select class="form-control" id="jenisKelamin" name="jenisKelamin" aria-label="Jenis">
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="email" >
                     </div>
                     <div class="form-group">
                         <label for="Kelas">Kelas</label>
-                        <input type="text" name="kelas" class="form-control" id="Kelas" aria-describedby="password" >
+                        <input type="text" name="kelas" class="form-control" id="kelas" aria-describedby="password" >
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>
-                        <input type="text" name="jurusan" class="form-control" id="Jurusan" aria-describedby="Jurusan" >
+                        <input type="text" name="jurusan" class="form-control" id="jurusan" aria-describedby="Jurusan" >
+                    </div>
+                    <div class="form-group">
+                        <label for="tglLahir">Tanggal Lahir</label>
+                        <input type="date" name="tglLahir" class="form-control" id="tglLahir" aria-describedby="tglLahir" >
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" name="alamat" id="alamat" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

@@ -14,6 +14,10 @@ class Mahasiswa extends Model
         'nim',
         'nama',
         'kelas',
-        'jurusan'
+        'jurusan',
+        'jenisKelamin',
+        'email',
+        'alamat',
+        'tglLahir'
     ];
 }
