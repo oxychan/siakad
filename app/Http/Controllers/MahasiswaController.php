@@ -27,12 +27,15 @@ class MahasiswaController extends Controller
     public function search(Request $request) 
     {
         $keyword = $request->search;
-        $mahasiswa = Mahasiswa::where('nim', 'like', '%' .$keyword. '%')
+        $mahasiswa = Mahasiswa::with('kelas')
+            ->where('nim', 'like', '%' .$keyword. '%')
             ->orWhere('nama', 'like', '%' .$keyword. '%')
             ->orWhere('jurusan', 'like', '%' .$keyword. '%')
-            ->orWhere('email', 'like', '%' .$keyword. '%' .$keyword. '%') 
-            ->orWhere('kelas', 'like', '%' .$keyword. '%')
-            ->paginate(3)->withQueryString();
+            ->orWhere('email', 'like', '%' .$keyword. '%') 
+            ->orWhereHas('kelas', function ($query){
+                $query->where('nama_kelas', 'like', '%' .request('search'). '%');
+            })
+            ->paginate(3);
         
             return view('mahasiswa.index', compact('mahasiswa'));
     }

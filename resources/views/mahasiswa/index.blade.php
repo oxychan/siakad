@@ -63,6 +63,6 @@
 @endforeach
 </table>
 <div class="d-flex justify-content-center">
- {{ $mahasiswa->links() }}
+ {{ $mahasiswa->withQueryString()->links() }}
 </div>
 @endsection
