@@ -15,9 +15,11 @@ use App\Http\Controllers\MahasiswaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    redirect('mahasiswa');
 });
 
 Route::resource('mahasiswa', MahasiswaController::class);
+
+Route::get('mahasiswa/nilai/{idMhs}', [MahasiswaController::class, 'nilai'])->name('mahasiswa.nilai');
 
 Route::get('/search', [MahasiswaController::class, 'search'])->name('mahasiswa.search');
