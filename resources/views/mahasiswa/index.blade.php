@@ -41,6 +41,7 @@
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
+        <th>Foto</th>
         <th width="300px">Action</th>
     </tr>
 @foreach ($mahasiswa as $mhs)
@@ -49,6 +50,7 @@
         <td>{{ $mhs->nama }}</td>
         <td>{{ $mhs->kelas->nama_kelas }}</td>
         <td>{{ $mhs->jurusan }}</td>
+        <td><img src="{{ asset('storage/' . $mhs->featured_image) }}" width="40px" alt="Foto"></td>
         <td>
             <form action="{{ route('mahasiswa.destroy', $mhs->nim) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->nim) }}">Show</a>
