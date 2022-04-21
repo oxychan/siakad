@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mahasiswa_MataKuliah;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class MahasiswaController extends Controller
 {
@@ -150,7 +151,6 @@ class MahasiswaController extends Controller
             'email' => 'required',
             'tglLahir' => 'required',
             'alamat' => 'required',
-            'foto' => 'required',
         ]);
 
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
@@ -159,10 +159,13 @@ class MahasiswaController extends Controller
         {
             Storage::delete('public/' . $mahasiswa->featured_image);
         }
+        if($request->file('foto')) 
+        {
+            $imageName = $request->file('foto')->store('images', 'public'); 
+    
+            $mahasiswa->featured_image = $imageName;
+        }
 
-        $imageName = $request->file('foto')->store('images', 'public'); 
-
-        $mahasiswa->featured_image = $imageName;
         $mahasiswa->nim = request('nim');
         $mahasiswa->nama = request('nama');
         $mahasiswa->email = request('email');
@@ -207,5 +210,16 @@ class MahasiswaController extends Controller
             ->where('id_mahasiswa', $idMhs)->first();
         
         return view('mahasiswa.nilai', compact('mhsMatkul'));
+    }
+
+    public function cetakKhs($idMhs)
+    {
+        $mhsMatkul = Mahasiswa_MataKuliah::with('matakuliah')
+            ->where('mahasiswa_id', $idMhs)->get();
+        $mhsMatkul->mahasiswa = Mahasiswa::with('kelas')
+            ->where('id_mahasiswa', $idMhs)->first();
+        
+        $cetakKHS = PDF::loadview('mahasiswa.cetakKhs', compact('mhsMatkul'));
+        return $cetakKHS->stream();        
     }
 }

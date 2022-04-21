@@ -66,7 +66,7 @@
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>
-                        <input type="file" name="foto" id="img" required class="form-control">
+                        <input type="file" name="foto" id="img" class="form-control">
                         <img width="100px" src="{{ asset('storage/' . $Mahasiswa->featured_image) }}" alt="Foto">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

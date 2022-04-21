@@ -18,8 +18,12 @@ Route::get('/', function () {
     redirect('mahasiswa');
 });
 
-Route::resource('mahasiswa', MahasiswaController::class);
-
 Route::get('mahasiswa/nilai/{idMhs}', [MahasiswaController::class, 'nilai'])->name('mahasiswa.nilai');
 
-Route::get('/search', [MahasiswaController::class, 'search'])->name('mahasiswa.search');
+Route::get('mahasiswa/nilai/{idMhs}/cetak', [MahasiswaController::class, 'cetakKhs'])->name('mahasiswa.cetakKhs');
+
+Route::get('mahasiswa/search', [MahasiswaController::class, 'search'])->name('mahasiswa.search');
+
+Route::resource('mahasiswa', MahasiswaController::class);
+
+
