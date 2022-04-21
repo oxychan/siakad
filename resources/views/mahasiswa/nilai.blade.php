@@ -11,6 +11,7 @@
         <th>SKS</th>
         <th>Semester</th>
         <th>Nilai</th>
+        <th>test</th>
         @foreach($mhsMatkul as $nilai)
         <tr>
             <td>{{ $nilai->matakuliah->nama_matkul }}</td>
